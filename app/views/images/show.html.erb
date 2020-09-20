@@ -1,17 +1,17 @@
-<p id="notice"><%= notice %></p>
+<main>
+  <div class="container">
+    <div class="category-wrapper">
+      <%= image_tag @image.attachment.thumb.url, class: "image", alt: @image.attachment.identifier %>
+    </div>
 
+    <% @image.sub_images.each do |sub_im| %>
+      <div class="category-wrapper">
+        <%= image_tag sub_im.attachment.thumb.url, class: "image", alt: sub_im.attachment.identifier %>
+      </div>
+    <% end %>
+  </div>
+</main>
 <p>
-  <strong>Attachment:</strong>
-  <%= image_tag @image.attachment.thumb.url %>
-</p>
-
-<p>
-  <strong>Similar images:</strong>
-
-  <% @image.sub_images.each do |sub_im| %>
-    <%= image_tag sub_im.attachment.thumb.url %>
-  <% end %>
-</p>
 
 <%= link_to 'Back', category_images_path %> |
 <%= link_to 'Add a similar picture', new_category_image_path(main_image_id: @image.id) %>

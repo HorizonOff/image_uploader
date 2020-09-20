@@ -1,25 +1,17 @@
-<p id="notice"><%= notice %></p>
-<h1><%= @current_category.title %></h1>
+<header class="header">
+  <h1><%= @current_category.title %></h1>
+</header>
 
-<table>
-  <thead>
-    <tr>
-      <th>Attachment</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<main>
+  <div class="container">
     <% @images.each do |image| %>
-      <tr>
-        <td><%= image_tag image.attachment.thumb.url %></td>
-        <td><%= link_to 'Show', category_image_path(@current_category.id, image.id) %></td>
-      </tr>
+      <div class="category-wrapper hovered">
+        <%= image_tag image.attachment.thumb.url, class: "image", alt: image.attachment.identifier %>
+        <a href="<%= category_image_path(@current_category.id, image.id) %>" class="category-show">Show</a>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
+  </div>
+</main>
 
 <%= link_to 'Back', categories_path %> |
 <%= link_to 'New Image', new_category_image_path %>
