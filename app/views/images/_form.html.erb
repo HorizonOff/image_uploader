@@ -1,0 +1,27 @@
+<%= form_with(model: image, url: category_images_path, local: true) do |f| %>
+  <% if image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+      <ul>
+        <% image.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :attachment %>
+    <%= f.file_field :attachment %>
+    <%= f.hidden_field :attachment_cache %>
+  </div>
+
+  <% main_image = params[:main_image_id] %>
+  <%= f.hidden_field :main_image_id, value: main_image if main_image %>
+  <%= f.hidden_field :category_id, value: @current_category.id %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

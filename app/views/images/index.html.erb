@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+<h1><%= @current_category.title %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attachment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @images.each do |image| %>
+      <tr>
+        <td><%= image_tag image.attachment.thumb.url %></td>
+        <td><%= link_to 'Show', category_image_path(@current_category.id, image.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back', categories_path %> |
+<%= link_to 'New Image', new_category_image_path %>

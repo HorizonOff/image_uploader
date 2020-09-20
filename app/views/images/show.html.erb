@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Attachment:</strong>
+  <%= image_tag @image.attachment.thumb.url %>
+</p>
+
+<p>
+  <strong>Similar images:</strong>
+
+  <% @image.sub_images.each do |sub_im| %>
+    <%= image_tag sub_im.attachment.thumb.url %>
+  <% end %>
+</p>
+
+<%= link_to 'Back', category_images_path %> |
+<%= link_to 'Add a similar picture', new_category_image_path(main_image_id: @image.id) %>

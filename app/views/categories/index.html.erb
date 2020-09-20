@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+<h1>Categories</h1>
+
+<table>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.title %></td>
+        <td><%= link_to 'Show', category_images_path(category.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Category', new_category_path %>
