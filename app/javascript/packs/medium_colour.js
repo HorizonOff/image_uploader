@@ -56,7 +56,7 @@ const setAverageBg = () => {
     });
 }
 
-document.addEventListener("turbolinks:load", () => {
+export const getMediumColor = () => {
     const imgs = document.images;
     let imgCounter = 0
 
@@ -74,4 +74,6 @@ document.addEventListener("turbolinks:load", () => {
         else
             img.addEventListener('load', incrementCounter, false);
     });
-});
+}
+
+document.addEventListener("turbolinks:load", getMediumColor);

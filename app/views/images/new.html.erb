@@ -1,4 +1,4 @@
-<%= form_with(model: @image, url: category_images_path(main_image_id: @main_image_id), local: true) do |f| %>
+<%= form_with(model: @image, url: category_images_path(main_image_id: @main_image_id)) do |f| %>
   <% if @image.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>

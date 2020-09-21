@@ -14,11 +14,13 @@ class ImagesController < ApplicationController
 
   def create
     @image = Image.new(image_params)
-    @main_image_id = params[:image][:main_image_id]
     if @image.save
       flash[:success] = 'Image was successfully created'
-      redirect_to category_image_path(@image.category.id, @main_image_id)
+      ActionCable.server.broadcast "image_channel",
+                                   content: @image
+      redirect_to category_images_path
     else
+      @main_image_id = params[:image][:main_image_id]
       render :new
     end
   end
