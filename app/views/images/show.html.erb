@@ -13,5 +13,7 @@
 </main>
 <p>
 
-<%= link_to 'Back', category_images_path %> |
-<%= link_to 'Add a similar picture', new_category_image_path(main_image_id: @image.id) %>
+<div class="navbar">
+  <a href="<%= category_images_path %>" class="btn">Back</a>
+  <a href="<%= new_category_image_path(main_image_id: @image.id) %>" class="btn">Add a similar picture</a>
+</div>

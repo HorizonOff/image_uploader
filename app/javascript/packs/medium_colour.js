@@ -1,10 +1,8 @@
 const getImageItems = () => {
-    debugger;
     return document.querySelectorAll('.image');
 }
 
 const getAverageRGB = (imgEl) => {
-
     let blockSize = 5, // only visit every 5 pixels
         defaultRGB = {r:0,g:0,b:0}, // for non-supporting envs
         canvas = document.createElement('canvas'),
@@ -27,7 +25,7 @@ const getAverageRGB = (imgEl) => {
     try {
         data = context.getImageData(0, 0, width, height);
     } catch(e) {
-        /* security error, img on diff domain */alert('x');
+        /* security error, img on diff domain */
         return defaultRGB;
     }
 
@@ -49,7 +47,7 @@ const getAverageRGB = (imgEl) => {
 
 }
 
-const setAverageBg = function() {
+const setAverageBg = () => {
     const images = getImageItems();
 
     images.forEach(function (el) {
@@ -58,6 +56,22 @@ const setAverageBg = function() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    setAverageBg();
-}, true);
+document.addEventListener("turbolinks:load", () => {
+    const imgs = document.images;
+    let imgCounter = 0
+
+    const incrementCounter = () => {
+        imgCounter++
+
+        if ( imgCounter === imgs.length ) {
+            setAverageBg();
+        }
+    }
+
+    [].forEach.call(imgs, (img) => {
+        if (img.complete)
+            incrementCounter();
+        else
+            img.addEventListener('load', incrementCounter, false);
+    });
+});

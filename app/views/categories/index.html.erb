@@ -1,17 +1,22 @@
-<p id="notice"><%= notice %></p>
-<h1>Categories</h1>
+<div class="wrapper">
+  <div class="header">
+    <h1>Categories</h1>
+  </div>
 
-<table>
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.title %></td>
-        <td><%= link_to 'Show', category_images_path(category.id) %></td>
-      </tr>
+  <div>
+    <% if @categories.blank? %>
+      <h1>No categories created before</h1>
+    <% else %>
+      <% @categories.each do |category| %>
+        <div>
+          <h3><%= category.title %></h3>
+          <a href="<%= category_images_path(category.id) %>">Show</a>
+        </div>
+      <% end %>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
-
-<%= link_to 'New Category', new_category_path %>
+  <div class="navbar">
+    <a href="<%= new_category_path %>" class="btn">New Category</a>
+  </div>
+</div>

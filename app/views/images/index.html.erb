@@ -4,14 +4,20 @@
 
 <main>
   <div class="container">
-    <% @images.each do |image| %>
-      <div class="category-wrapper hovered">
-        <%= image_tag image.attachment.thumb.url, class: "image", alt: image.attachment.identifier %>
-        <a href="<%= category_image_path(@current_category.id, image.id) %>" class="category-show">Show</a>
-      </div>
+    <% if @images.blank? %>
+      <h1>No images added before</h1>
+    <% else %>
+      <% @images.each do |image| %>
+        <div class="category-wrapper hovered">
+          <%= image_tag image.attachment.thumb.url, class: "image", alt: image.attachment.identifier %>
+          <a href="<%= category_image_path(@current_category.id, image.id) %>" class="category-show">Show</a>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </main>
 
-<%= link_to 'Back', categories_path %> |
-<%= link_to 'New Image', new_category_image_path %>
+<div class="navbar">
+  <a href="<%= categories_path %>" class="btn">Back</a>
+  <a href="<%= new_category_image_path %>" class="btn">New Image</a>
+</div>
