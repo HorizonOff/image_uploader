@@ -1,16 +1,4 @@
 <%= form_with(model: @category, local: true) do |f| %>
-  <% if @category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this image from being saved:</h2>
-
-      <ul>
-        <% @category.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="wrapper">
     <div class="header">
       <h3 class="text">New category</h3>
@@ -20,6 +8,14 @@
     <div>
       <%= f.text_field :title, class:"text_field", required: "required", placeholder: "Title name" %>
     </div>
+
+    <% if @category.errors.any? %>
+      <div class="error_message">
+        <% @category.errors.full_messages.each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+      </div>
+    <% end %>
 
     <div>
       <input type="submit" value="Create category" />

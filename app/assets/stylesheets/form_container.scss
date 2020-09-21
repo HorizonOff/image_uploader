@@ -41,6 +41,13 @@ input[type="submit"]{
   }
 }
 
+.error_message {
+  box-shadow: inset 0 0 0 3px red;
+  padding:5px;
+  border-radius:3px;
+  margin:5px 0;
+}
+
 .pull_right {
   float: right;
 }

@@ -14,7 +14,7 @@ class Image < ApplicationRecord
     original_type = self.main_image.attachment.content_type
 
     if self.attachment.content_type != original_type
-      errors.add(:base, "Uploaded image should have same type: #{original_type}")
+      errors.add(:base, "Uploaded image should have same type: #{ original_type.split("/").last }")
     end
   end
 
@@ -22,6 +22,8 @@ class Image < ApplicationRecord
     origin_ratio = (self.main_image.attachment.width.to_f / self.main_image.attachment.height.to_f).round(2)
     sub_ratio = (self.attachment.width.to_f / self.attachment.height.to_f).round(2)
 
-    errors.add(:base, "Uploaded image should have same ratio: #{origin_ratio}") unless (sub_ratio * 100 / origin_ratio).between?(95, 105)
+    unless (sub_ratio * 100 / origin_ratio).between?(95, 105)
+      errors.add(:base, "Uploaded image should have same ratio: #{ origin_ratio }")
+    end
   end
 end
