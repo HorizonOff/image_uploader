@@ -3,7 +3,7 @@ class ImagesController < ApplicationController
   before_action :set_current_category, only: %i[index new create]
 
   def index
-    @images = @current_category.images.where(main_image_id: nil).order(created_at: :desc)
+    @images = @current_category.images.where(main_image_id: nil)
   end
 
   def show;  end

@@ -10,6 +10,8 @@ class Image < ApplicationRecord
 
   validate :check_sub_image_type, :check_sub_image_size, if: ->(obj) { obj.main_image_id.present? }
 
+  default_scope -> { order(created_at: :desc) }
+
   def check_sub_image_type
     original_type = self.main_image.attachment.content_type
 
